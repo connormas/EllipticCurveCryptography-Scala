@@ -6,8 +6,5 @@ project/target/
 # dev related
 test_fir/
 
-# release related
-utils/bin/essent.jar
-
 # IDE relate
 .idea/*
