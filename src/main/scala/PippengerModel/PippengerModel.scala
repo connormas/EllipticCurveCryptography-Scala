@@ -44,6 +44,4 @@ object PippengerModel extends App {
   pdub.print()
   val pmul1 = cx * 1
   pmul1.print()
-  val pmul2 = cx * 4
-  pmul2.print()
 }
