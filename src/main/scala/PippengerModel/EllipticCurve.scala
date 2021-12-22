@@ -8,9 +8,11 @@ package PippengerModel
  * param A: a coefficient
  * param B: a coefficient
  * param P: order of the finite field, hopefully prime
+ * param G: generator point for this curve
  */
-class EllipticCurve(A: Int, B: Int, P: Int) {
+class EllipticCurve(A: Int, B: Int, P: Int) { //G: Point) {
   val a: Int = A
   val b: Int = B
   val p: Int = P
+  //val g: Point = G
 }
