@@ -14,13 +14,13 @@ object Util {
   // finds the modular inverse of a mod(p)
   def mod_inverse(a: Int, p: Int): Int = {
     def mod_inv_recurse(a: Int, p: Int, n: Int): Int = {
+      if (n == p) return -1
       val r = (a * n) % p
       if (r != 1) {
         return mod_inv_recurse(a, p, n+1)
       }
       return n
     }
-
     if (a < 0) {
       return p - mod_inverse(-a, p)
     }

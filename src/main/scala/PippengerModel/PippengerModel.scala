@@ -20,8 +20,19 @@ object PippengerModel extends App {
   // print out the first 15 points on this elliptic curve
   val p1707 = new EllipticCurve(0, 7, 17)
   val cx = new Point(15, 13, p1707)
-  for (n <- 0 until 15) {
+  val p2 = new Point(5, 8, p1707)
+  val cx1 = new Point(3, 0, p1707)
+  val p21 = new Point(6, 11, p1707)
+  val sum = cx + p2
+  val sum1 = cx1 + p21
+  //sum.print()
+  //sum1.print()
+
+  for (n <- 0 until 25) {
     val pmul = cx * n
     pmul.print()
   }
+
+  //val pmul = cx * 18
+  //pmul.print()
 }
