@@ -14,7 +14,12 @@ object PippengerModel extends App {
     pmul.print()
   }
 
-  println("Perform dot product of List(1,2,3,4,5) with itself and sum elements")
-  val l = List(1,2,3,4,5)
-  println(zksnarkMSM_model(l, l))
+  println("\n\nPerform dot product of List((1,5),(1,12),(8,3),(12,1)) List(2,4,6,8) with itself and sum elements")
+  val l = List(2,4,6,8)
+  val p1 = new Point(1, 5, p1707)
+  val p2 = new Point(1, 12, p1707)
+  val p3 = new Point(8, 3, p1707)
+  val p4 = new Point(12, 1, p1707)
+  val pl = List(p1,p2,p3,p4)
+  zksnarkMSM_model(pl, l).print()
 }
