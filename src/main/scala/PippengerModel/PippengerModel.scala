@@ -4,7 +4,7 @@ import Util._
 
 object PippengerModel extends App {
 
-  // print out the first 15 points on this elliptic curve
+  // small sample curve
   val p1707a = BigInt("0")
   val p1707b = BigInt("7")
   val p1707p = BigInt("17")
@@ -13,17 +13,24 @@ object PippengerModel extends App {
   val ycoord = BigInt("13")
   val cx = new Point(xcoord, ycoord, p1707)
 
-  println("Print out first 25 EC Points. (They will repeat.)")
+  println("Print out first 30 EC Points of small example curve. (They will repeat.)")
   for (n <- 0 to 34) {
     val pmul = cx * n
     pmul.print()
   }
 
-  println("\n\nPerform zkSNARK MSM sim")
-  val l = List(4,5,2,34,2,5,6,7)
+  // SECP256k1 (curve used in bitcoin)
+  val a = BigInt("0000000000000000000000000000000000000000000000000000000000000000", 16)
+  val b = BigInt("0000000000000000000000000000000000000000000000000000000000000007", 16)
+  val p = BigInt("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F", 16)
+  val secp256k1 = new EllipticCurve(a, b, p)
+  val gx = BigInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", 16)
+  val gy = BigInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", 16)
+  val secp256k1gen = new Point(gx, gy, secp256k1)
 
-
-
-  var mylist = (0 until 30).toArray
-
+  println("Print out first 30 EC Points of SECP256k1 curve.")
+  for (n <- 0 to 34) {
+    val pmul = secp256k1gen * n
+    pmul.print()
+  }
 }
