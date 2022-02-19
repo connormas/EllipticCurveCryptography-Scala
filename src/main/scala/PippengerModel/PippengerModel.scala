@@ -14,10 +14,7 @@ object PippengerModel extends App {
   val cx = new Point(xcoord, ycoord, p1707)
 
   println("Print out first 30 EC Points of small example curve. (They will repeat.)")
-  for (n <- 0 to 34) {
-    val pmul = cx * n
-    pmul.print()
-  }
+  (0 until 30) foreach { n => (cx * n).print() }
 
   // SECP256k1 (curve used in bitcoin)
   val a = BigInt("0000000000000000000000000000000000000000000000000000000000000000", 16)
@@ -27,10 +24,4 @@ object PippengerModel extends App {
   val gx = BigInt("79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798", 16)
   val gy = BigInt("483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8", 16)
   val secp256k1gen = new Point(gx, gy, secp256k1)
-
-  println("Print out first 30 EC Points of SECP256k1 curve.")
-  for (n <- 0 to 34) {
-    val pmul = secp256k1gen * n
-    pmul.print()
-  }
 }
