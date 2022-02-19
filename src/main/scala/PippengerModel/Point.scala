@@ -7,13 +7,13 @@ import Util._
  * It takes just two arguments, an X and Y coordinate. There are a number
  * of operations defined for these types of points.
  */
-class Point(coord_x: Int, coord_y: Int, ec: EllipticCurve) {
-  val x: Int = coord_x
-  val y: Int = coord_y
+class Point(coord_x: BigInt, coord_y: BigInt, ec: EllipticCurve) {
+  val x: BigInt = coord_x
+  val y: BigInt = coord_y
   val curve: EllipticCurve = ec
 
   def double() = {
-    val l = (3 * this.x * this.x + this.curve.a) * Util.mod_inverse(2 * this.y, this.curve.p)
+    val l = (BigInt("3") * this.x * this.x + this.curve.a) * Util.mod_inverse(BigInt("2") * this.y, this.curve.p)
     var new_x = ((l * l)  - this.x - this.x) % this.curve.p
     if (new_x < 0) {
       new_x = new_x + this.curve.p

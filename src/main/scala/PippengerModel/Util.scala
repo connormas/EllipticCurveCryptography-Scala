@@ -12,8 +12,8 @@ object Util {
   }
 
   // finds the modular inverse of a mod(p)
-  def mod_inverse(a: Int, p: Int): Int = {
-    def mod_inv_recurse(a: Int, p: Int, n: Int): Int = {
+  def mod_inverse(a: BigInt, p: BigInt): BigInt = {
+    def mod_inv_recurse(a: BigInt, p: BigInt, n: BigInt): BigInt = {
       if (n == p) return -1
       val r = (a * n) % p
       if (r != 1) {
