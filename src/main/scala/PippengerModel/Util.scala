@@ -3,12 +3,25 @@ package PippengerModel
 object Util {
   // uses euclidean method to find greatest common denominator
   // between two numbers
-  def gcd(a: Int, b: Int): Int = {
-    if (b == 0) {
-      return a
+  def gcd(a: BigInt, b: BigInt): (BigInt, BigInt, BigInt) = {
+    if (a == 0) {
+      return (b, 0, 1)
     } else {
-      gcd(b, a % b)
+      val (g, y, x) = gcd(b % a, a)
+      return (g, (x - (b / a) * y), y)
     }
+  }
+
+  // from github.com/alexmgr/tinyec/blob/master/tinyec/ec.py
+  def modinv(a: BigInt, p: BigInt): BigInt = {
+    if (a < 0) {
+      return p - modinv(-a, p)
+    }
+    val (g, x, y) = gcd(a, p)
+    if (g == 1) {
+      return x % p
+    }
+    return BigInt("-1")
   }
 
   // finds the modular inverse of a mod(p)

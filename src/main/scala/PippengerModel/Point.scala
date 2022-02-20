@@ -13,7 +13,7 @@ class Point(coord_x: BigInt, coord_y: BigInt, ec: EllipticCurve) {
   val curve: EllipticCurve = ec
 
   def double() = {
-    val l = (BigInt("3") * this.x * this.x + this.curve.a) * Util.mod_inverse(BigInt("2") * this.y, this.curve.p)
+    val l = (BigInt("3") * this.x * this.x + this.curve.a) * Util.modinv(BigInt("2") * this.y, this.curve.p)
     var new_x = ((l * l)  - this.x - this.x) % this.curve.p
     if (new_x < 0) {
       new_x = new_x + this.curve.p
@@ -37,7 +37,7 @@ class Point(coord_x: BigInt, coord_y: BigInt, ec: EllipticCurve) {
     }
 
 
-    val modinv = Util.mod_inverse(that.x - this.x, this.curve.p)
+    val modinv = Util.modinv(that.x - this.x, this.curve.p)
     if (modinv == -1) return new Point(0, 0, this.curve)
     val l = (that.y - this.y)  * modinv
     var new_x = ((l * l)  - this.x - that.x) % this.curve.p
