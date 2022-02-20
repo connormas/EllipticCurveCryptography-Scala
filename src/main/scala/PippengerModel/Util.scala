@@ -1,8 +1,7 @@
 package PippengerModel
 
 object Util {
-  // uses euclidean method to find greatest common denominator
-  // between two numbers
+  // from github.com/alexmgr/tinyec/blob/master/tinyec/ec.py
   def gcd(a: BigInt, b: BigInt): (BigInt, BigInt, BigInt) = {
     if (a == 0) {
       return (b, 0, 1)
@@ -22,22 +21,6 @@ object Util {
       return x % p
     }
     return BigInt("-1")
-  }
-
-  // finds the modular inverse of a mod(p)
-  def mod_inverse(a: BigInt, p: BigInt): BigInt = {
-    def mod_inv_recurse(a: BigInt, p: BigInt, n: BigInt): BigInt = {
-      if (n == p) return -1
-      val r = (a * n) % p
-      if (r != 1) {
-        return mod_inv_recurse(a, p, n+1)
-      }
-      return n
-    }
-    if (a < 0) {
-      return p - mod_inverse(-a, p)
-    }
-    mod_inv_recurse(a, p, 0)
   }
 
   /*
@@ -61,8 +44,6 @@ object Util {
    * This mimics what the MSM part of zkSNARK does. It takes in two vectors.
    * One vectors of scalars, and another vector of points. It multiplies each
    * scalar by its corresponding point and them sums up all the points.
-   * (right now, we are just doing this with two int vectors to verify
-   * that it is working properly.)
    */
   def zksnarkMSM_model(g: List[Point], e: List[Int]): Point = {
     assert(g.length == e.length, "vectors should be the same length")
