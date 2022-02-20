@@ -73,6 +73,6 @@ class Point(coord_x: BigInt, coord_y: BigInt, ec: EllipticCurve) {
   }
 
   def print() = {
-    println(s"I am the point (${this.x}, ${this.y})")
+    println(s"${this.x} ${this.y}")
   }
 }
