@@ -13,9 +13,32 @@ object PippengerModel extends App {
   val ycoord = BigInt("13")
   val cx = new Point(xcoord, ycoord, p1707)
 
+  val points = Seq((15,13), (2,10), (8,3), (12,1), (6,6), (5,8), (10,15), (1,12), (3,0), (1,5), (10,2), (5,9))
+  val scalars = Seq(1,2,3,4,5,6,7,8,9,10,11,12)
+  val pseq = points map { case(x, y) => new Point(x, y, p1707)}
+  val pl = (0 until 1000000) flatMap { _ => pseq }
+  val sl = (0 until 1000000) flatMap { _ => scalars }
+  var times = Seq()
+  for (_ <- 0 until 10) {
+    val (r, time) = zksnarkMSM_model(pl, sl)
+    println(time)
+  }
+
+
   //println("Print out first 30 EC Points of small example curve. (They will repeat.)")
   //(0 until 30) foreach { n => (cx * n).print() }
 
+  // slightly bigger curve
+  val p99707a = BigInt("-1")
+  val p99707b = BigInt("1")
+  val p99707p = BigInt("97")
+  val p99707 = new EllipticCurve(p99707a, p99707b, p99707p)
+  val xc = BigInt("76")
+  val yc = BigInt("48")
+  val gp = new Point(xc, yc, p99707)
+
+  //println("Print out first 30 EC Points of small example curve. (They will repeat.)")
+  //(0 until 30) foreach { n => (gp * n).print() }
 
   // secp256k1 (curve used in bitcoin)
   val a = BigInt("0000000000000000000000000000000000000000000000000000000000000000", 16)
@@ -39,6 +62,6 @@ object PippengerModel extends App {
   val r1gy = BigInt("4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5", 16)
   val secp256r1gen = new Point(r1gx, r1gy, secp256r1)
 
-  println("Print out first 30 EC Points of SECP256k1")
-  (1 until 11) foreach { n => (secp256r1gen * n).print() }
+  //println("Print out first 30 EC Points of SECP256k1")
+  //(1 until 100) foreach { n => (secp256r1gen * n).print() }
 }
