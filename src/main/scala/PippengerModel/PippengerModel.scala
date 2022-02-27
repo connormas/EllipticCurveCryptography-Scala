@@ -16,8 +16,8 @@ object PippengerModel extends App {
   val points = Seq((15,13), (2,10), (8,3), (12,1), (6,6), (5,8), (10,15), (1,12), (3,0), (1,5), (10,2), (5,9))
   val scalars = Seq(1,2,3,4,5,6,7,8,9,10,11,12)
   val pseq = points map { case(x, y) => new Point(x, y, p1707)}
-  val pl = (0 until 1000000) flatMap { _ => pseq }
-  val sl = (0 until 1000000) flatMap { _ => scalars }
+  val pl = (0 until 100000) flatMap { _ => pseq }
+  val sl = (0 until 100000) flatMap { _ => scalars }
   var times = Seq()
   for (_ <- 0 until 10) {
     val (r, time) = zksnarkMSM_model(pl, sl)
